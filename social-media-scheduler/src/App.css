@@ -84,6 +84,44 @@ button:hover {
   color: #666;
 }
 
+.engagement {
+  margin-top: 10px;
+}
+
+.engagement button {
+  margin-right: 10px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.engagement button:hover {
+  background-color: #0056b3;
+}
+
+.calendar-view {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.calendar-view h2 {
+  margin-bottom: 15px;
+}
+
+.calendar-day {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #fbfee7;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
 @media (max-width: 768px) {
 
   textarea,

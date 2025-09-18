@@ -1,14 +1,31 @@
 import { createContext, useReducer } from "react";
 
-const PostContext = createContext();
+export const PostContext = createContext();
 const initialState = {
-    posts: [],
+    posts: []
 };
 
 function reducer(state, action) {
     switch (action.type) {
         case "ADD_POST":
-            return { ...state, posts: [...state.posts, action.payload] };
+            return {
+                ...state,
+                posts: [...state.posts, { ...action.payload, likes: 0, shares: 0 }]
+            };
+        case "LIKE_POST":
+            return {
+                ...state,
+                posts: state.posts.map((post, i) =>
+                    i === action.index ? { ...post, likes: post.likes + 1 } : post
+                )
+            };
+        case "SHARE_POST":
+            return {
+                ...state,
+                posts: state.posts.map((post, i) =>
+                    i === action.index ? { ...post, shares: post.shares + 1 } : post
+                )
+            };
         default:
             return state;
     }
