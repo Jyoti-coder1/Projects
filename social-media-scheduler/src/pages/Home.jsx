@@ -1,6 +1,7 @@
 import PostForm from "../components/PostForm";
 import PostList from "../components/PostList";
 import CalendarView from "../components/CalendarView";
+import Analytics from "../components/Analytics";
 
 function Home() {
     return (
@@ -9,6 +10,7 @@ function Home() {
             <PostForm />
             <PostList />
             <CalendarView />
+            <Analytics />
         </div>
     );
 }

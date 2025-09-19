@@ -2,16 +2,24 @@ import { createContext, useReducer } from "react";
 
 export const PostContext = createContext();
 const initialState = {
-    posts: []
+    posts: [],
+    hashtags: {}
 };
 
 function reducer(state, action) {
     switch (action.type) {
-        case "ADD_POST":
+        case "ADD_POST": {
+            const hashtagsInPost = action.payload.text.match(/#[a-zA-z0-9_]+/g) || [];
+            const updatedHashtags = { ...state.hashtags };
+            hashtagsInPost.forEach(tag => {
+                updatedHashtags[tag] = (updatedHashtags[tag] || 0) + 1;
+            });
             return {
                 ...state,
-                posts: [...state.posts, { ...action.payload, likes: 0, shares: 0 }]
+                posts: [...state.posts, { ...action.payload, likes: 0, shares: 0 }],
+                hashtags: updatedHashtags
             };
+        }
         case "LIKE_POST":
             return {
                 ...state,

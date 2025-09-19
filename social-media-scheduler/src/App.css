@@ -122,6 +122,38 @@ button:hover {
   border: 1px solid #ccc;
 }
 
+.suggestions {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef6ff;
+  border-radius: 6px;
+  border: 1px solid #cce0ff;
+}
+
+.hashtag {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 4px 8px;
+  background: #007bff;
+  color: white;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.analytics {
+  margin-top: 30px;
+  padding: 20px;
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+}
+
+.analytics h2 {
+  margin-bottom: 15px;
+}
+
 @media (max-width: 768px) {
 
   textarea,
