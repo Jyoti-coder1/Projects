@@ -5,6 +5,8 @@ export default function PostForm() {
     const { dispatch } = useContext(PostContext);
     const [text, setText] = useState("");
     const [date, setDate] = useState("");
+    const [platform, setPlatform] = useState("Facebook");
+    const [author, setAuthor] = useState("");
     const [suggestedTags, setSuggestedTags] = useState([]);
     const trendingTags = ["#marketing", "#socialMedia", "#branding", "#content", "#growth", "#strategy"];
 
@@ -29,11 +31,31 @@ export default function PostForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!text || !date) return alert("Please enter post and date");
-        dispatch({ type: "ADD_POST", payload: { text, date } });
+        if (!text || !date || !author) return alert("Please enter all fields");
+        dispatch({ type: "ADD_POST", payload: { text, date, platform, author } });
         setText("");
         setDate("");
+        setPlatform("Facebook");
+        setAuthor("");
         setSuggestedTags([]);
+    };
+
+    const handleBulkUpload = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const lines = event.target.result.split("\n");
+            const posts = lines
+                .slice(1)
+                .map((line) => {
+                    const [text, date, platform, author] = line.split(",");
+                    return { text, date, platform, author };
+                })
+                .filter((p) => p.text && p.date && p.platform && p.author);
+                dispatch({ type: "BULK_UPLOAD", payload: posts });
+            };
+        reader.readAsText(file);
     };
 
     return (
@@ -49,7 +71,24 @@ export default function PostForm() {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
             />
+            <input
+                type="text"
+                placeholder="Author/Team Member"
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+            />
+
+            <select value={platform} onChange={(e) => setPlatform(e.target.value)}>
+                <option>Facebook</option>
+                <option>Instagram</option>
+                <option>Twitter</option>
+                <option>LinkedIn</option>
+                <option>Pinterest</option>
+            </select>
+
             <button type="submit">Schedule Post</button>
+            <input type="file" accept=".csv" onChange={handleBulkUpload} />
+
             {suggestedTags.length > 0 && (
                 <div className="suggestions">
                     <p>Suggested Hashtags:</p>

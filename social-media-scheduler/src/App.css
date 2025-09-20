@@ -29,7 +29,9 @@ textarea {
   resize: none;
 }
 
-input[type="datetime-local"] {
+input[type="datetime-local"],
+select,
+input[type="text"] {
   width: 80%;
   max-width: 300px;
   padding: 8px;
@@ -48,6 +50,7 @@ button {
   cursor: pointer;
   border-radius: 6px;
   transition: 0.3s;
+  margin-bottom: 18px;
 }
 
 button:hover {
@@ -81,7 +84,10 @@ button:hover {
 }
 
 .post-item small {
+  display: block;
+  margin-bottom: 8px;
   color: #666;
+  font-size: 14px;
 }
 
 .engagement {
@@ -130,9 +136,15 @@ button:hover {
   border: 1px solid #cce0ff;
 }
 
+.suggestions p {
+  margin: 0 0 5px 0;
+  font-weight: bold;
+}
+
 .hashtag {
   display: inline-block;
   margin-right: 8px;
+  margin-bottom: 5px;
   padding: 4px 8px;
   background: #007bff;
   color: white;
@@ -140,6 +152,10 @@ button:hover {
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;
+}
+
+.hashtag:hover {
+  background: #0056b3;
 }
 
 .analytics {
@@ -158,6 +174,8 @@ button:hover {
 
   textarea,
   input[type="datetime-local"],
+  select,
+  input[type="text"],
   .post-item {
     width: 95%;
   }

@@ -20,6 +20,22 @@ function reducer(state, action) {
                 hashtags: updatedHashtags
             };
         }
+        case "BULK_UPLOAD": {
+            const updatedHashtags = { ...state.hashtags };
+            const newPosts = action.payload.map(post => {
+                const hashtagsInPost = post.text.match(/#[a-zA-Z0-9_]+/g) || [];
+                hashtagsInPost.forEach(tag => {
+                    updatedHashtags[tag] = (updatedHashtags[tag] || 0) + 1;
+                });
+                return { ...post, likes: 0, shares: 0 };
+            });
+
+            return {
+                ...state,
+                posts: [...state.posts, ...newPosts],
+                hashtags: updatedHashtags
+            };
+        }
         case "LIKE_POST":
             return {
                 ...state,
