@@ -9,16 +9,18 @@ function CalendarView() {
         acc[dateKey].push(post);
         return acc;
     }, {});
+    
+    const today = new Date().toLocaleDateString();
 
     return (
         <div className="calendar-view">
             <h2>Content Calendar</h2>
             {Object.keys(groupedPosts).length === 0 && <p>No posts scheduled</p>}
             {Object.entries(groupedPosts).map(([date, posts], i) => (
-                <div key={i} className="calendar-day">
+                <div key={i} className={`calendar-day ${date === today ? "today" : ""}`}>
                     <h3>{date}</h3>
                     {posts.map((p, idx) => (
-                        <p key={idx}>• {p.text}</p>
+                        <p key={idx} className={`category-${p.category.toLowerCase()}`}>• {p.text} ({p.platform})</p>
                     ))}
                 </div>
             ))}

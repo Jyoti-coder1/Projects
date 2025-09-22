@@ -11,6 +11,14 @@ h1 {
   margin-bottom: 20px;
 }
 
+h2 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 12px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 4px;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -61,6 +69,20 @@ button:hover {
   padding: 20px;
 }
 
+.nav a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
 .post-list {
   display: flex;
   flex-direction: column;
@@ -90,6 +112,11 @@ button:hover {
   font-size: 14px;
 }
 
+.post-item p:nth-child(5) {
+  color: #d63384;
+  font-weight: bold;
+}
+
 .engagement {
   margin-top: 10px;
 }
@@ -105,8 +132,89 @@ button:hover {
   transition: 0.3s;
 }
 
-.engagement button:hover {
-  background-color: #0056b3;
+.engagement button.like {
+  background-color: #28a745;
+}
+
+.engagement button.like:hover {
+  background-color: #218838;
+}
+
+.engagement button.share {
+  background-color: #17a2b8;
+}
+
+.engagement button.share:hover {
+  background-color: #138496;
+}
+
+.status-draft {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-pendingreview {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-approved {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.alerts {
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto 15px auto;
+}
+
+.alert {
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+  font-weight: bold;
+  text-align: center;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.alerts p {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .calendar-view {
@@ -114,10 +222,7 @@ button:hover {
   padding: 20px;
   background: #fff;
   border-radius: 8px;
-}
-
-.calendar-view h2 {
-  margin-bottom: 15px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .calendar-day {
@@ -126,6 +231,11 @@ button:hover {
   background: #fbfee7;
   border-radius: 6px;
   border: 1px solid #ccc;
+}
+
+.calendar-day.today {
+  border: 2px solid #007bff;
+  background-color: #e7f1ff;
 }
 
 .suggestions {
@@ -152,10 +262,12 @@ button:hover {
   font-size: 14px;
   cursor: pointer;
   text-decoration: none;
+  transition: all 0.2s;
 }
 
 .hashtag:hover {
   background: #0056b3;
+  transform: scale(1.1);
 }
 
 .analytics {
@@ -164,10 +276,49 @@ button:hover {
   background: #fff3cd;
   border: 1px solid #ffeeba;
   border-radius: 8px;
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.08);
 }
 
-.analytics h2 {
-  margin-bottom: 15px;
+.category-promo {
+  color: #d63384;
+  font-weight: bold;
+}
+
+.category-educational {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.category-entertainment {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.pagination button {
+  background-color: #007bff;
+  padding: 6px 14px;
+  font-size: 14px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-weight: bold;
+  color: #333;
 }
 
 @media (max-width: 768px) {

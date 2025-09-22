@@ -7,6 +7,7 @@ export default function PostForm() {
     const [date, setDate] = useState("");
     const [platform, setPlatform] = useState("Facebook");
     const [author, setAuthor] = useState("");
+    const [status, setStatus] = useState("Draft");
     const [suggestedTags, setSuggestedTags] = useState([]);
     const trendingTags = ["#marketing", "#socialMedia", "#branding", "#content", "#growth", "#strategy"];
 
@@ -32,11 +33,12 @@ export default function PostForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!text || !date || !author) return alert("Please enter all fields");
-        dispatch({ type: "ADD_POST", payload: { text, date, platform, author } });
+        dispatch({ type: "ADD_POST", payload: { text, date, platform, author, status } });
         setText("");
         setDate("");
         setPlatform("Facebook");
         setAuthor("");
+        setStatus("Draft");
         setSuggestedTags([]);
     };
 
@@ -53,9 +55,10 @@ export default function PostForm() {
                     return { text, date, platform, author };
                 })
                 .filter((p) => p.text && p.date && p.platform && p.author);
-                dispatch({ type: "BULK_UPLOAD", payload: posts });
-            };
+            dispatch({ type: "BULK_UPLOAD", payload: posts });
+        };
         reader.readAsText(file);
+        e.target.value = null;
     };
 
     return (
@@ -84,6 +87,11 @@ export default function PostForm() {
                 <option>Twitter</option>
                 <option>LinkedIn</option>
                 <option>Pinterest</option>
+            </select>
+            <select value={status} onChange={(e) => setStatus(e.target.value)}>
+                <option value="Draft">Draft</option>
+                <option value="Pending Review">Pending Review</option>
+                <option value="Approved">Approved</option>
             </select>
 
             <button type="submit">Schedule Post</button>
